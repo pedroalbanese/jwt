@@ -3,7 +3,7 @@
 //
 // Example usage:
 // The following will create and sign a token, then verify it and output the original claims.
-//     echo {\"foo\":\"bar\"} | bin/jwt -key hmac.ext -sign - | bin/jwt -key hmac.ext -verify -
+//     echo {\"foo\":\"bar\"} | bin/jwt -key test/sample_key -alg RS256 -sign - | bin/jwt -key test/sample_key.pub -verify -
 package main
 
 import (
@@ -20,6 +20,7 @@ import (
 
 var (
 	// Options
+	flagAlg     = flag.String("alg", "", "signing algorithm identifier")
 	flagKey     = flag.String("key", "", "path to key file or '-' to read from stdin")
 	flagCompact = flag.Bool("compact", false, "output compact JSON")
 	flagDebug   = flag.Bool("debug", false, "print out all kinds of debug data")
@@ -165,8 +166,14 @@ func signToken() error {
 		return fmt.Errorf("Couldn't read key: %v", err)
 	}
 
+	// get the signing alg
+	alg := jwt.GetSigningMethod(*flagAlg)
+	if alg == nil {
+		return fmt.Errorf("Couldn't find signing method: %v", *flagAlg)
+	}
+
 	// create a new token
-	token := jwt.New(jwt.GetSigningMethod("HS256"))
+	token := jwt.New(alg)
 	token.Claims = claims
 
 	if out, err := token.SignedString(keyData); err == nil {
