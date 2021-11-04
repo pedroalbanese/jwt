@@ -3,7 +3,7 @@
 //
 // Example usage:
 // The following will create and sign a token, then verify it and output the original claims.
-//     echo {\"foo\":\"bar\"} | bin/jwt -key test/sample_key -sign - | bin/jwt -key test/sample_key.pub -verify -
+//     echo {\"foo\":\"bar\"} | bin/jwt -key hmac.ext -sign - | bin/jwt -key hmac.ext -verify -
 package main
 
 import (
