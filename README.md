@@ -1,6 +1,7 @@
-# JSON Web Tokens
+# JWT
 
-### JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
+### JSON Web Tokens ,
+JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
 <pre>Usage of jwt:
   One of the following flags is required: sign, verify
   -alg string
