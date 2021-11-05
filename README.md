@@ -26,5 +26,4 @@
 
 This project is licensed under the MIT License.
 
-##### Copyright (c) 2012 Dave Grijalva
-##### Copyright (c) 2020-2021 Pedro Albanese
+##### Copyright (c) 2020-2021 Pedro Albanese - ALBANESE Research Lab
