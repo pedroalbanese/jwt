@@ -1,5 +1,7 @@
 # JWT
-
+[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/jwt/blob/master/LICENSE.md) 
+[![GoDoc](https://godoc.org/github.com/pedroalbanese/jwt?status.png)](http://godoc.org/github.com/pedroalbanese/jwt)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/jwt)](https://goreportcard.com/report/github.com/pedroalbanese/jwt)
 ### JSON Web Tokens
 JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties.
 <pre>Usage of jwt:
