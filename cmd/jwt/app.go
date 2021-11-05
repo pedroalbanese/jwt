@@ -3,7 +3,7 @@
 //
 // Example usage:
 // The following will create and sign a token, then verify it and output the original claims.
-//     echo {\"foo\":\"bar\"} | bin/jwt -key hmac.ext -alg HS256 -sign - | bin/jwt -key hmac.ext -verify -
+//     echo {\"foo\":\"bar\"} | bin/jwt -key test/sample_key -alg HS256 -sign - | bin/jwt -key test/sample_key -verify -
 package main
 
 import (
@@ -26,11 +26,18 @@ var (
 	flagDebug   = flag.Bool("debug", false, "print out all kinds of debug data")
 
 	// Modes - exactly one of these is required
-	flagSign   = flag.String("sign", "", "path to claims object to sign or '-' to read from stdin")
+	flagSign   = flag.String("sign", "", "path to claims object to sign, '-' to read from stdin, or '+' to use only -claim args")
+	flagParse = flag.Bool("parse", false, "Show header")
 	flagVerify = flag.String("verify", "", "path to JWT token to verify or '-' to read from stdin")
+	flagClaims  = make(ArgList)
+	flagHead    = make(ArgList)
 )
 
 func main() {
+	// Plug in Var flags
+	flag.Var(flagClaims, "claim", "add additional claims. may be used more than once")
+	flag.Var(flagHead, "header", "add additional header params. may be used more than once")
+
 	// Usage message if you ask for -help or if you mess up inputs.
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
@@ -70,6 +77,8 @@ func loadData(p string) ([]byte, error) {
 	var rdr io.Reader
 	if p == "-" {
 		rdr = os.Stdin
+	} else if p == "+" {
+		return []byte("{}"), nil
 	} else {
 		if f, err := os.Open(p); err == nil {
 			rdr = f
@@ -135,7 +144,12 @@ func verifyToken() error {
 		return fmt.Errorf("Token is invalid")
 	}
 
-	// Print the token details
+	if *flagParse == true {
+		// Parse the token header
+		if err := printJSON(token.Header); err != nil {
+			return fmt.Errorf("Failed to output header: %v", err)
+		}
+	}
 	if err := printJSON(token.Claims); err != nil {
 		return fmt.Errorf("Failed to output claims: %v", err)
 	}
@@ -160,6 +174,13 @@ func signToken() error {
 		return fmt.Errorf("Couldn't parse claims JSON: %v", err)
 	}
 
+	// add command line claims
+	if len(flagClaims) > 0 {
+		for k, v := range flagClaims {
+			claims[k] = v
+		}
+	}
+
 	// get the key
 	keyData, err := loadData(*flagKey)
 	if err != nil {
@@ -175,6 +196,13 @@ func signToken() error {
 	// create a new token
 	token := jwt.New(alg)
 	token.Claims = claims
+
+	// add command line headers
+	if len(flagHead) > 0 {
+		for k, v := range flagHead {
+			token.Header[k] = v
+		}
+	}
 
 	if out, err := token.SignedString(keyData); err == nil {
 		fmt.Println(out)
