@@ -24,7 +24,7 @@ JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ie
   -verify string
         path to JWT token to verify or '-' to read from stdin</pre>
         
-## Examples:
+### Examples:
 ```sh
 echo {\"foo\":\"bar\"} | jwt -key secret.txt -sign - | jwt -key secret.txt -verify -
 ```
