@@ -24,6 +24,17 @@ JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ie
   -verify string
         path to JWT token to verify or '-' to read from stdin</pre>
         
+## Examples:
+```sh
+echo {\"foo\":\"bar\"} | jwt -key secret.txt -sign - | jwt -key secret.txt -verify -
+```
+or:
+```sh
+jwt -key secret.txt -claim "foo=bar" -sign + | jwt -key secret.txt -verify -
+```
+
+Access: [JSON Web Tokens Debugger](https://jwt.io/) and see [GoDoc](https://pkg.go.dev/github.com/pedroalbanese/jwt?utm_source=godoc)  
+
 ## License
 
 This project is licensed under the MIT License.
