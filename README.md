@@ -6,7 +6,8 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/jwt)](https://github.com/pedroalbanese/jwt/releases)
 
 ### JSON Web Tokens
-JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties.
+JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties. This version only works with HMAC-SHA2 signatures. ECDH_ES variant, consists in the direct use of a shared symmetric key as the Content Encryption Key (CEK) for the block encryption step (recommended). 
+
 <pre>Usage of jwt:
   -alg string
         signing algorithm identifier
