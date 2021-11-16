@@ -36,7 +36,7 @@ or:
 ```sh
 jwt -key secret.txt -claim "foo=bar" -sign + | jwt -key secret.txt -verify -
 ```
-Access [JSON Web Tokens Debugger](https://jwt.io/) and see [GoDoc](https://pkg.go.dev/github.com/pedroalbanese/jwt?utm_source=godoc).
+Access [JSON Web Tokens Debugger](https://jwt.io/) and [GoDoc](https://pkg.go.dev/github.com/pedroalbanese/jwt?utm_source=godoc).
 
 ## License
 
