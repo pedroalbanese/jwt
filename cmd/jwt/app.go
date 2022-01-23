@@ -27,10 +27,10 @@ var (
 
 	// Modes - exactly one of these is required
 	flagSign   = flag.String("sign", "", "path to claims object to sign, '-' to read from stdin, or '+' to use only -claim args")
-	flagParse = flag.Bool("parse", false, "Show header")
+	flagParse  = flag.Bool("parse", false, "Show header")
 	flagVerify = flag.String("verify", "", "path to JWT token to verify or '-' to read from stdin")
-	flagClaims  = make(ArgList)
-	flagHead    = make(ArgList)
+	flagClaims = make(ArgList)
+	flagHead   = make(ArgList)
 )
 
 func main() {
