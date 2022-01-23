@@ -1,14 +1,11 @@
 # JWT
-[![ISC License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pedroalbanese/jwt/blob/master/LICENSE.md) 
+[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/jwt/blob/master/LICENSE.md) 
 [![GoDoc](https://godoc.org/github.com/pedroalbanese/jwt?status.png)](http://godoc.org/github.com/pedroalbanese/jwt)
 [![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/jwt)](https://goreportcard.com/report/github.com/pedroalbanese/jwt)
-[![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/jwt)](https://golang.org)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/jwt)](https://github.com/pedroalbanese/jwt/releases)
-
 ### JSON Web Tokens
-JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties. This version only works with HMAC-SHA2 signatures. ECDH_ES variant, consists in the direct use of a shared symmetric key as the Content Encryption Key (CEK) for the block encryption step (recommended). 
-
+JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519) method for representing claims securely between two parties.
 <pre>Usage of jwt:
+  One of the following flags is required: sign, verify
   -alg string
         signing algorithm identifier
   -claim value
@@ -28,16 +25,6 @@ JSON Web Tokens are an open, industry standard [RFC 7519](https://datatracker.ie
   -verify string
         path to JWT token to verify or '-' to read from stdin</pre>
         
-### Examples:
-```sh
-echo {\"foo\":\"bar\"} | jwt -key secret.txt -sign - | jwt -key secret.txt -verify -
-```
-or:
-```sh
-jwt -key secret.txt -claim "foo=bar" -sign + | jwt -key secret.txt -verify -
-```
-Access [JSON Web Tokens Debugger](https://jwt.io/) and [GoDoc](https://pkg.go.dev/github.com/pedroalbanese/jwt?utm_source=godoc).
-
 ## License
 
 This project is licensed under the MIT License.
