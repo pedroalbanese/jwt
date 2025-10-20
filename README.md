@@ -1,5 +1,5 @@
 # JWT
-[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/jwt/blob/master/LICENSE.md) 
+[![MIT License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/jwt/blob/master/LICENSE.md) 
 [![GoDoc](https://godoc.org/github.com/pedroalbanese/jwt?status.png)](http://godoc.org/github.com/pedroalbanese/jwt)
 [![GitHub downloads](https://img.shields.io/github/downloads/pedroalbanese/jwt/total.svg?logo=github&logoColor=white)](https://github.com/pedroalbanese/jwt/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/jwt)](https://goreportcard.com/report/github.com/pedroalbanese/jwt)
